@@ -8,10 +8,10 @@ parasails.registerPage('pinch-looper', {
     // Note. Don't render the whole of this keyboard object to the page it causes Vue to log a 'circular structure' error to the console.
     keyboard: {
       // Loops
-      'q': { playId: undefined, isPlaying: false, sample: '', oneShot: false },
-      'w': { playId: undefined, isPlaying: false, sample: '', oneShot: false },
-      'e': { playId: undefined, isPlaying: false, sample: '', oneShot: false },
-      'r': { playId: undefined, isPlaying: false, sample: '', oneShot: false },
+      'q': { playId: 1, isPlaying: false, sample: 'Beat(Yu).mp3', oneShot: false },
+      'w': { playId: 2, isPlaying: false, sample: 'Beat.mp3', oneShot: false },
+      'e': { playId: 5, isPlaying: false, sample: 'MeloSynth.mp3', oneShot: false },
+      'r': { playId: 7, isPlaying: false, sample: 'Stab1.mp3', oneShot: false },
       't': { playId: undefined, isPlaying: false, sample: '', oneShot: false },
       'y': { playId: undefined, isPlaying: false, sample: '', oneShot: false },
       'u': { playId: undefined, isPlaying: false, sample: '', oneShot: false },
