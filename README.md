@@ -9,5 +9,6 @@ Press one to loop a sample and press more than one to loop samples together.
 
 You can press them again to stop the loops.
 
-Hold the `shift` key to enter 'sample-select' mode.
-
+Hold the `shift` and a letter key (eg `e`) to enter 'sample-select' mode. Then click
+on the right-hand menu to choose which sample you want to assign to the
+key you're holding.
