@@ -1,0 +1,18 @@
+<div id="main">
+
+
+    <div v-for="sample in samplesFolder" v-on:click="playSample(sample.name, 'play')">
+      {{ sample.name }}
+    </div>
+
+    <label>Sample Start</label>
+    <input type="range" name="sprite-start" min="0" max="10000" v-model="sampleStart">
+    {{sampleStart}}
+
+    <label>Sample End</label>
+    <input type="range" name="sprite-start" min="0" max="10000" v-model="sampleEnd">
+    {{sampleEnd}}
+
+</div>
+
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>

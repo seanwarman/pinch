@@ -1,0 +1,72 @@
+<div id="pinch-looper">
+
+  <!-- Maybe put a loading message here -->
+
+  <div class="page-wrapper" v-cloak>
+
+    <div class="row">
+      <div class="col-8">
+        <div id="analyser-wrapper" class="analyser-wrapper">
+          <!-- Big wave analyser goes here -->
+          <canvas id="master-analyser"></canvas>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="browser">
+
+          <!-- Shift combo key for the sample browser -->
+          <!-- Only render the shiftCombo key in the sample browser if the key can have a sample assigned to it -->
+          <div v-if="checkSampleKey(shiftCombo, keyboard)" class="shift-combo-selection-wrapper">
+            <div class="shift-combo-selection">{{ shiftCombo.toUpperCase() }}</div>
+          </div>
+
+          <!-- All Samples in /samples -->
+          <div v-for="(sampleFile, index) in samplesFolder" class="sample-file">
+            <i
+            class="fas preview-icon highlighter"
+            v-on:click="previewSamplePlayer(index)"
+            :class="[samplesFolder[index].isPlaying ? 'fa-stop' : 'fa-play']"></i>
+
+            <span
+            v-on:click="assignSample(shiftCombo, sampleFile.file)"
+            :class="{ highlighter: shiftCombo, highlighted: (shiftCombo ? (keyboard[shiftCombo].sample === sampleFile.file) : false)}"
+            >{{ sampleFile.file }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seq-backbar">
+      <!-- Keys go here -->
+      <div class="row keys-rows">
+        <!-- Loops: Q to P -->
+        <div v-for="item in returnKeys(keyboard, 0, 10)" class="col-1">
+          <div class="label" :class="{ 'lit-label': keyboard[item].sample }">
+            <span v-if="keyboard[item].sample">{{ keyboard[item].sample.slice(0, -4) }}</span>
+            <span v-else>EMPTY</span>
+          </div>
+          <div class="key" :class="{ 'lit-keyboard': (shiftCombo === item) }" v-on:click="samplePlayer(item, keyboard[item].isPlaying)">{{ item.toUpperCase() }}</div>
+          <div class="indicator-wrapper"><div class="indicator" :class="{ 'lit-indicator': keyboard[item].isPlaying }"></div></div>
+        </div>
+      </div>
+
+      <div class="row keys-rows">
+        <!-- One-shots: A to L -->
+        <div v-for="item in returnKeys(keyboard, 10, 19)" class="col-1">
+          <div class="label" :class="{ 'lit-label': keyboard[item].sample }">
+            <span v-if="keyboard[item].sample">{{ keyboard[item].sample.slice(0, -4) }}</span>
+            <span v-else>EMPTY</span>
+          </div>
+          <div class="key" :class="{ 'lit-keyboard': (shiftCombo === item) }" v-on:click="sampleShot(item, keyboard[item].isPlaying)">{{ item.toUpperCase() }}</div>
+          <div class="indicator-wrapper"><div class="indicator" :class="{ 'lit-indicator': keyboard[item].isPlaying }"></div></div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+</div>
+
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
